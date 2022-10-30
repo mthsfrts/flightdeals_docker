@@ -66,7 +66,7 @@ export default function SignUp() {
             picture: preview ? preview.split(',')[1] : ""
         };
 
-        const response = postData("http://172.20.0.2:5000/signup", user)
+        const response = postData("http://localhost:5000/signup", user)
         response.then((data) => {
             serUserData(data.data);
             //

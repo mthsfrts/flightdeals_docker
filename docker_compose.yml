@@ -38,6 +38,7 @@ services:
       - 5433:5432
     volumes:
       - postgres_storage:/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       fd:
         ipv4_address: 172.20.0.4

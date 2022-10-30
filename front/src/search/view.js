@@ -73,7 +73,7 @@ export default function View() {
             picture: preview ? preview.split(',')[1] : ""
             //picture: preview.split(',')[1]
         };
-        const response = postData("http://172.20.0.2:5000/update", user_data)
+        const response = postData("http://localhost:5000/update", user_data)
         response.then((data) => {
             navigate('/search', { state: data.data });
             //setState(data.data);
@@ -106,7 +106,7 @@ export default function View() {
             BUSINESS_PRICE_COMPARE: businessPrice,
         };
         console.log(flight_data)
-        const response = postData("http://172.20.0.2:5000/search", flight_data);
+        const response = postData("http://localhost:5000/search", flight_data);
 
     };
 

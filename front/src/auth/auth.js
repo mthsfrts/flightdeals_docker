@@ -46,7 +46,7 @@ export default function Auth() {
             password: data.get('password'),
         };
         console.log(auth)
-        const response = postData("http://172.20.0.2:5000/login", auth)
+        const response = postData("http://localhost:5000/login", auth)
         response.then((data) => {
 
             setUserData(data.data);
