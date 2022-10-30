@@ -1,0 +1,82 @@
+version: '3.1'
+
+services:
+
+  back:
+    image: flightdeals-back
+    restart: always
+    ports:
+      - 5000:5000
+    depends_on:
+      - "db"
+      - "s3"
+    volumes:
+      - back_storage:/data
+    networks:
+      fd:
+        ipv4_address: 172.20.0.2
+
+  front:
+    image: flightdeals-front
+    restart: always
+    depends_on:
+      - "back"
+    ports:
+            - 80:3000
+    volumes:
+      - front_storage:/data
+    networks:
+      fd:
+        ipv4_address: 172.20.0.3
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - 5433:5432
+    volumes:
+      - postgres_storage:/data
+    networks:
+      fd:
+        ipv4_address: 172.20.0.4
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    networks:
+      fd:
+        ipv4_address: 172.20.0.5
+
+  s3:
+    image: minio/minio
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - minio_storage:/data
+    environment:
+      MINIO_ROOT_USER: admin
+      MINIO_ROOT_PASSWORD: admin1234
+    command: server --console-address ":9001" /data
+    networks:
+      fd:
+        ipv4_address: 172.20.0.6
+
+volumes:
+  minio_storage: {}
+  postgres_storage: {}
+  back_storage: {}
+  front_storage: {}
+
+networks:
+  fd:
+   driver: bridge
+   ipam:
+    driver: default
+    config:
+      - subnet: 172.20.0.0/16
+        gateway: 172.20.0.1
