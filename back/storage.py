@@ -15,12 +15,12 @@ class S3:
     """
     #resource = aws.resource("s3")
     client = Minio(
-        "localhost:9000",
+        endpoint="172.20.0.6:9000",
         access_key="admin",
         secret_key="admin1234",
         secure=False
     )
-
+    
     @staticmethod
     def create_bucket(username):
         """

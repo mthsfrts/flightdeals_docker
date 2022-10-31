@@ -92,6 +92,8 @@ def update():
         image_64_decode = base64.b64decode(data["picture"])
         S3.upload_to_bucket("profile.jpeg", image_64_decode, f"{data['username'].lower()}.s3")
 
+    print("User data>>>>> ", user_data)
+    print("User name>>>>> ", data['username'])
     user_data["pic"] = S3.url_from_file(f"{data['username'].lower()}.s3", "profile.jpeg")
 
     return user_data
