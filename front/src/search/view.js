@@ -8,37 +8,6 @@ import { postData } from '../apicall';
 
 const theme = createTheme();
 
-
-const RenderItem = ({ props }) => {
-
-    return (
-        <Box
-            sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                backgroundColor: "#4272f5",
-                padding: 2,
-                margin: 1,
-                width: "100%",
-                borderRadius: 3
-            }}
-        >
-            <h4 style={{ margin: 0, padding: 1, color: "white" }}>{props.destination}</h4>
-
-
-            <div style={{ margin: 0, padding: 2, fontSize: 14, paddingLeft: 7, color: "#cec5db" }}>
-                <p style={{}}><b>Flight day:</b> {props.departure_day}, <b>Return day:</b> {props.return_data}</p>
-                <p style={{}}><b>Cabin:</b> {props.cabin}, <b>Price:</b> {props.price}</p>
-                <a href={props.url} style={{ color: "#9ef542" }}>{props.url}</a>
-            </div>
-
-        </Box >
-    );
-
-};
-
-
-
 export default function View() {
 
     const { state } = useLocation();
@@ -69,7 +38,7 @@ export default function View() {
             firstname: firstName,
             lastname: lastName,
             email: email,
-            id: state.id,
+            id: state.creds_id,
             picture: preview ? preview.split(',')[1] : ""
             //picture: preview.split(',')[1]
         };
@@ -137,6 +106,9 @@ export default function View() {
         setPicture(picture);
         setSelectedFile(true)
     }
+
+    console.log("preview: ", preview);
+    console.log("state.pic: ", state.pic);
     return (
 
         <div class="wrapper bg-white mt-sm-5">
@@ -320,11 +292,11 @@ export default function View() {
                 </div>
                 <div class="d-sm-flex align-items-center pt-3" id="deactivate">
                     <div>
-                        <b>Start Search</b>
+                        <b>Assign Newsletter</b>
                         <p>We'll send to your email when we found a good deal!</p>
                     </div>
                     <div class="ml-auto">
-                        <button class="btn danger" type="submit" value="submit" href="/login.html" onClick={handleSearch}>Start</button>
+                        <button class="btn danger" type="submit" value="submit" href="/login.html" onClick={handleSearch}>Submit</button>
                     </div>
                 </div>
             </div>

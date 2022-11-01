@@ -12,11 +12,6 @@ class FlightsSQL:
     def __init__(self):
 
         self.conn = psycopg2.connect(
-            # host="database-1.cyya4blmbzcp.us-east-1.rds.amazonaws.com",
-            # user="postgres",
-            # password="988991495",
-            # dbname='postgres',
-            # port=5432
             host="172.20.0.4",
             user="postgres",
             password="postgres",
@@ -154,7 +149,7 @@ class FlightsSQL:
             return user_data
         except Exception as error:
             print("IATA Update Error: " + str(error))
-            return None
+            return {}
 
     def insert_details(
         self,

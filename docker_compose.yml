@@ -25,9 +25,9 @@ services:
             - 80:3000
     volumes:
       - front_storage:/data
-    networks:
-      fd:
-        ipv4_address: 172.20.0.3
+    # networks:
+    #   fd:
+    #     ipv4_address: 172.20.0.3
 
   db:
     image: postgres
@@ -43,14 +43,14 @@ services:
       fd:
         ipv4_address: 172.20.0.4
 
-  adminer:
-    image: adminer
-    restart: always
-    ports:
-      - 8080:8080
-    networks:
-      fd:
-        ipv4_address: 172.20.0.5
+  # adminer:
+  #   image: adminer
+  #   restart: always
+  #   ports:
+  #     - 8080:8080
+  #   # networks:
+  #   #   fd:
+  #   #     ipv4_address: 172.20.0.5
 
   s3:
     image: minio/minio

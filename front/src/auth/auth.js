@@ -59,6 +59,8 @@ export default function Auth() {
         if (userData && userData.inserted) {
 
             // { state: userData }
+
+            console.log("User data: ", userData);
             navigate('/search', { state: userData });
         }
     }, [userData])

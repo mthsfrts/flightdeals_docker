@@ -12,7 +12,12 @@ COPY . .
 
 ENV FLASK_APP=app.py
 ENV FLASK_RUN_HOST=0.0.0.0
-ENV AWS_DEFAULT_REGION=us-west-2
+
+ENV AWS_DEFAULT_REGION=us-east-1
+ENV AWS_ACCESS_KEY_ID=insert-credentials-aws
+ENV AWS_SECRET_ACCESS_KEY=insert-credentials-aws
+ENV AWS_SESSION_TOKEN=insert-credentials-aws
+
 EXPOSE 5000
 
 CMD ["flask", "run"]

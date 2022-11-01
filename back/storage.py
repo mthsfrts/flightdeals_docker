@@ -18,9 +18,20 @@ class S3:
         endpoint="172.20.0.6:9000",
         access_key="admin",
         secret_key="admin1234",
+        region='us-east-1',
         secure=False
     )
-    
+
+    @staticmethod
+    def get_link(bucket, file):
+        return Minio(
+            endpoint="localhost:9000",
+            access_key="admin",
+            secret_key="admin1234",
+            region='us-east-1',
+            secure=False
+        ).presigned_get_object(bucket, file)
+        
     @staticmethod
     def create_bucket(username):
         """
@@ -108,18 +119,8 @@ class S3:
     @staticmethod
     def url_from_file(bucket, file):
         # try:
-        response = S3.client.presigned_get_object(bucket, file)
-        return response
-            # Read data from response.
-        # finally:
-        #     response.close()
-        #     response.release_conn()
-        # files = S3.listing_files(bucket)
-        # for file in files:
-        #     filename = f"{path}/" + file
-        #     S3.client.download_file(bucket, file, filename, Callback=ProgressPercentage(file, bucket))
-
-        print("\nDownload Successfully!\n")
+        #response = S3.client.presigned_get_object(bucket, file)
+        return S3.get_link(bucket,file)
 
 
 class ProgressPercentage(object):
