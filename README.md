@@ -1,8 +1,8 @@
 # flightdeals_docker
 
-#Clonar repositorio
+# Clonar repositorio
 
-#Navegue para a pasta back
+# Navegue para a pasta back
 
 ## No arquivo Dockerfile setar as credencias da aws nas variaveis de ambiente
 
@@ -11,11 +11,11 @@
 ## rode o comando 
 ###docker build -t flightdeals-back .
 
-#Naveque para a pasta front
+# Naveque para a pasta front
 
-###docker build -t flightdeals-front .
+### docker build -t flightdeals-front .
 
-#Na pasta raiz do repositorio rode o comando
+# Na pasta raiz do repositorio rode o comando
 
 ### docker-compose -f docker_compose.yml up -d
 
